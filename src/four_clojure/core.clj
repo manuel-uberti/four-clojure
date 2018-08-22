@@ -60,3 +60,33 @@
               (assoc acc el occurrences)))
           {}
           xs))
+
+;; # 77
+;; Anagram Finder
+;; Write a function which finds all the anagrams in a vector of words. A word x
+;; is an anagram of word y if all the letters in x can be rearranged in a
+;; different order to form y. Your function should return a set of sets, where
+;; each sub-set is a group of words which are anagrams of each other. Each
+;; sub-set should have at least two words. Words without any anagrams should
+;; not be included in the result.
+(defn anagram?
+  [s1 s2]
+  (if (and s1 s2)
+    (if (= (count s1) (count s2))
+      (let [cs1 (seq (.toLowerCase s1))
+            cs2 (seq (.toLowerCase s2))]
+        (every? (set cs1) cs2))
+      false)
+    false))
+
+(defn anagram-finder
+  [xs]
+  (->> xs
+       (reduce (fn [acc el]
+                 (let [match (set (filter #(anagram? % el) xs))]
+                   (if match
+                     (conj acc (conj match el))
+                     (conj acc #{el}))))
+               #{})
+       (filter #(> (count %) 1))
+       set))

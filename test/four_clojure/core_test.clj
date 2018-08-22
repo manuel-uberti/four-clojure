@@ -34,3 +34,10 @@
     (is (= (count-occurrences [1 1 2 3 2 1 1]) {1 4, 2 2, 3 1}))
     (is (= (count-occurrences [:b :a :b :a :b]) {:a 2, :b 3}))
     (is (= (count-occurrences '([1 2] [1 3] [1 3])) {[1 2] 1, [1 3] 2}))))
+
+(deftest anagram-finder-test
+  (testing "Testing anagram-finder function."
+    (is (= (anagram-finder ["meat" "mat" "team" "mate" "eat"])
+           #{#{"meat" "team" "mate"}}))
+    (is (= (anagram-finder ["veer" "lake" "item" "kale" "mite" "ever"])
+           #{#{"veer" "ever"} #{"lake" "kale"} #{"mite" "item"}}))))
