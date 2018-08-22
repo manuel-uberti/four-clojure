@@ -29,18 +29,13 @@
   (let [l (count xs)
         d (Math/abs dir)]
     (if (< d l)
-      (if (neg? dir)
-        (let [step (+ l dir)
-              end (take step xs)
-              start (drop step xs)]
-          (concat start end))
-        (let [step (mod l d)
-              end (take (inc step) xs)
-              start (drop (inc step) xs)]
-          (concat start end)))
-      (let [step (- d l)
-            end (if (neg? dir) (take (inc step) xs) (take step xs))
-            start (if (neg? dir) (drop (inc step) xs) (drop step xs))]
+      (let [step (if (neg? dir) (+ l dir) (inc (mod l d)))
+            end (take step xs)
+            start (drop step xs)]
+        (concat start end))
+      (let [step (if (neg? dir) (inc (- d l)) (- d l))
+            end (take step xs)
+            start (drop step xs)]
         (concat start end)))))
 
 ;; # 55
