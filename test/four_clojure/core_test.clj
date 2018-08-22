@@ -28,3 +28,9 @@
     (is (= (rotate-sequence 6 [1 2 3 4 5]) '(2 3 4 5 1)))
     (is (= (rotate-sequence 1 '(:a :b :c)) '(:b :c :a)))
     (is (= (rotate-sequence -4 '(:a :b :c)) '(:c :a :b)))))
+
+(deftest count-occurrences-test
+  (testing "Testing count-occurrences function."
+    (is (= (count-occurrences [1 1 2 3 2 1 1]) {1 4, 2 2, 3 1}))
+    (is (= (count-occurrences [:b :a :b :a :b]) {:a 2, :b 3}))
+    (is (= (count-occurrences '([1 2] [1 3] [1 3])) {[1 2] 1, [1 3] 2}))))

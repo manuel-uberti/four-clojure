@@ -48,3 +48,15 @@
             end (if (neg? dir) (take (inc step) xs) (take step xs))
             start (if (neg? dir) (drop (inc step) xs) (drop step xs))]
         (concat start end)))))
+
+;; # 55
+;; Count Occurrences
+;; Write a function which returns a map containing the number of occurences of
+;; each distinct item in a sequence.
+(defn count-occurrences
+  [xs]
+  (reduce (fn [acc el]
+            (let [occurrences (count (filter #(= % el) xs))]
+              (assoc acc el occurrences)))
+          {}
+          xs))
