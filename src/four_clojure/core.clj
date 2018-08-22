@@ -1,4 +1,5 @@
-(ns four-clojure.core)
+(ns four-clojure.core
+  (:require [clojure.set :as s]))
 
 ;; # 20
 ;; Penultimate element
@@ -78,3 +79,16 @@
                #{})
        (filter #(> (count %) 1))
        set))
+
+;; # 85
+;; Power Set
+;; Write a function which generates the power set of a given set. The power
+;; set of a set x is the set of all subsets of x, including the empty set and x
+;; itself.
+(defn power-set
+  [xs]
+  (if (empty? xs)
+    (conj #{} xs)
+    (->> xs
+         (map #(power-set (disj xs %)))
+         (apply s/union #{xs}))))

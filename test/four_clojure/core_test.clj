@@ -41,3 +41,11 @@
            #{#{"meat" "team" "mate"}}))
     (is (= (anagram-finder ["veer" "lake" "item" "kale" "mite" "ever"])
            #{#{"veer" "ever"} #{"lake" "kale"} #{"mite" "item"}}))))
+
+(deftest power-set-test
+  (testing "Testing power-set function."
+    (is (= (power-set #{1 :a}) #{#{1 :a} #{:a} #{} #{1}}))
+    (is (= (power-set #{}) #{#{}}))
+    (is (= (power-set #{1 2 3})
+           #{#{} #{1} #{2} #{3} #{1 2} #{1 3} #{2 3} #{1 2 3}}))
+    (is (= (count (power-set (into #{} (range 10)))) 1024))))
