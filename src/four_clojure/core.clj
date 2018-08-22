@@ -111,6 +111,9 @@
   [xs]
   (if (empty? xs)
     (conj #{} xs)
-    (->> xs
-         (map #(power-set (disj xs %)))
-         (apply s/union #{xs}))))
+    (loop [[f & r] xs
+           acc #{#{}}]
+      (if f
+        (recur r
+               (into acc (map #(conj % f) acc)))
+        acc))))
