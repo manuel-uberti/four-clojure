@@ -1,5 +1,4 @@
-(ns four-clojure.core
-  (:require [clojure.set :as s]))
+(ns four-clojure.core)
 
 ;; # 20
 ;; Penultimate element
