@@ -83,10 +83,9 @@
   [xs]
   (->> xs
        (reduce (fn [acc el]
-                 (let [match (set (filter #(anagram? % el) xs))]
-                   (if match
-                     (conj acc (conj match el))
-                     (conj acc #{el}))))
+                 (if-let [match (set (filter #(anagram? % el) xs))]
+                   (conj acc (conj match el))
+                   (conj acc #{el})))
                #{})
        (filter #(> (count %) 1))
        set))
