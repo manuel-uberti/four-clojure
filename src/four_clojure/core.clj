@@ -111,9 +111,7 @@
   [xs]
   (if (empty? xs)
     (conj #{} xs)
-    (loop [[f & r] xs
-           acc #{#{}}]
-      (if f
-        (recur r
-               (into acc (map #(conj % f) acc)))
-        acc))))
+    (reduce (fn [acc el]
+              (into acc (map #(conj % el) acc)))
+            #{#{}}
+            xs)))
