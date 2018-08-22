@@ -22,6 +22,19 @@
   [xs]
   (partition-by identity xs))
 
+;; # 43
+;; Reverse Interleave
+;; Write a function which reverses the interleave process into x number of
+;; subsequences.
+(defn reverse-interleave
+  [xs x]
+  (loop [counter (dec x)
+         acc '()]
+    (if (neg? counter)
+      acc
+      (recur (dec counter)
+             (conj acc (map #(nth % counter) (partition x xs)))))))
+
 ;; # 44
 ;; Rotate Sequence
 ;; Write a function which can rotate a sequence in either direction.
@@ -38,6 +51,15 @@
             end (take step xs)
             start (drop step xs)]
         (concat start end)))))
+
+;; # 46
+;; Flipping out
+;; Write a higher-order function which flips the order of the arguments of an
+;; input function.
+(defn flipping-out
+  [op]
+  (fn [x y]
+    (op y x)))
 
 ;; # 55
 ;; Count Occurrences

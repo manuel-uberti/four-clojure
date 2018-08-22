@@ -21,6 +21,13 @@
     (is (= (pack-sequence [:a :a :b :b :c]) '((:a :a) (:b :b) (:c))))
     (is (= (pack-sequence [[1 2] [1 2] [3 4]]) '(([1 2] [1 2]) ([3 4]))))))
 
+(deftest reverse-interleave-test
+  (testing "Testing reverse-interleave function."
+    (is (= (reverse-interleave [1 2 3 4 5 6] 2) '((1 3 5) (2 4 6))))
+    (is (= (reverse-interleave (range 9) 3) '((0 3 6) (1 4 7) (2 5 8))))
+    (is (= (reverse-interleave (range 10) 5)
+           '((0 5) (1 6) (2 7) (3 8) (4 9))))))
+
 (deftest rotate-sequence-test
   (testing "Testing rotate-sequence function."
     (is (= (rotate-sequence 2 [1 2 3 4 5]) '(3 4 5 1 2)))
@@ -28,6 +35,13 @@
     (is (= (rotate-sequence 6 [1 2 3 4 5]) '(2 3 4 5 1)))
     (is (= (rotate-sequence 1 '(:a :b :c)) '(:b :c :a)))
     (is (= (rotate-sequence -4 '(:a :b :c)) '(:c :a :b)))))
+
+(deftest flipping-out-test
+  (testing "Testing flipping-out function."
+    (is (= 3 ((flipping-out nth) 2 [1 2 3 4 5])))
+    (is (= true ((flipping-out >) 7 8)))
+    (is (= 4 ((flipping-out quot) 2 8)))
+    (is (= [1 2 3] ((flipping-out take) [1 2 3 4 5] 3)))))
 
 (deftest count-occurrences-test
   (testing "Testing count-occurrences function."
