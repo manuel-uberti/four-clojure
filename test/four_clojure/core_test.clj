@@ -56,6 +56,13 @@
     (is (= (count-occurrences [:b :a :b :a :b]) {:a 2, :b 3}))
     (is (= (count-occurrences '([1 2] [1 3] [1 3])) {[1 2] 1, [1 3] 2}))))
 
+(deftest distinct-items-test
+  (testing "Testing distinct-items function."
+    (is (= (distinct-items [1 2 1 3 1 2 4]) [1 2 3 4]))
+    (is (= (distinct-items [:a :a :b :b :c :c]) [:a :b :c]))
+    (is (= (distinct-items '([2 4] [1 2] [1 3] [1 3])) '([2 4] [1 2] [1 3])))
+    (is (= (distinct-items (range 50)) (range 50)))))
+
 (deftest anagram-finder-test
   (testing "Testing anagram-finder function."
     (is (= (anagram-finder ["meat" "mat" "team" "mate" "eat"])

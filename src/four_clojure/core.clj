@@ -89,6 +89,19 @@
           {}
           xs))
 
+;; # 56
+;; Find Distinct Items
+;; Write a function which removes the duplicates from a sequence. Order of the
+;; items must be maintained.
+(defn distinct-items
+  [xs]
+  (reduce (fn [acc el]
+            (if (some #(= % el) acc)
+              acc
+              (conj acc el)))
+          []
+          xs))
+
 ;; # 77
 ;; Anagram Finder
 ;; Write a function which finds all the anagrams in a vector of words. A word x
