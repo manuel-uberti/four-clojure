@@ -77,6 +77,15 @@
     (is (= "HELLO"
            ((fn-comp #(.toUpperCase %) #(apply str %) take) 5 "hello world")))))
 
+(deftest word-sorting-test
+  (testing "Testing word-sorting function."
+    (is (= (word-sorting "Have a nice day.")
+           ["a" "day" "Have" "nice"]))
+    (is (= (word-sorting "Clojure is a fun language!")
+           ["a" "Clojure" "fun" "is" "language"]))
+    (is (= (word-sorting "Fools fall for foolish follies.")
+           ["fall" "follies" "foolish" "Fools" "for"]))))
+
 (deftest anagram-finder-test
   (testing "Testing anagram-finder function."
     (is (= (anagram-finder ["meat" "mat" "team" "mate" "eat"])

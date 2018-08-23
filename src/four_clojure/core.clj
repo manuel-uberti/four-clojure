@@ -131,6 +131,32 @@
   ([f g & fs]
    (reduce fn-comp (conj fs g f))))
 
+;; # 70
+;; Word Sorting
+;; Write a function that splits a sentence up into a sorted list of
+;; words. Capitalization should not affect sort order and punctuation should be
+;; ignored.
+(defn strip-punctuation
+  [s]
+  (when (and s (string? s))
+    (let [chars ".,!?;:-_"
+          s (.trim s)]
+      (->> s
+           seq
+           (remove #((set chars) %))
+           (apply str)))))
+
+(defn word-sorting
+  [xs]
+  (let [ws (-> (strip-punctuation xs)
+               (clojure.string/split #" "))]
+    (->> ws
+         (reduce (fn [acc el]
+                   (conj acc {:value el}))
+                 [])
+         (sort-by :value #(.compareToIgnoreCase %1 %2))
+         (mapcat vals))))
+
 ;; # 77
 ;; Anagram Finder
 ;; Write a function which finds all the anagrams in a vector of words. A word x
