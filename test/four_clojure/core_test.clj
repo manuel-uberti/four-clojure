@@ -43,6 +43,13 @@
     (is (= 4 ((flipping-out quot) 2 8)))
     (is (= [1 2 3] ((flipping-out take) [1 2 3 4 5] 3)))))
 
+(deftest split-by-type-test
+  (testing "Testing split-by-type function."
+    (is (= (set (split-by-type [1 :a 2 :b 3 :c])) #{[1 2 3] [:a :b :c]}))
+    (is (= (set (split-by-type [:a "foo"  "bar" :b])) #{[:a :b] ["foo" "bar"]}))
+    (is (= (set (split-by-type [[1 2] :a [3 4] 5 6 :b]))
+           #{[[1 2] [3 4]] [:a :b] [5 6]}))))
+
 (deftest count-occurrences-test
   (testing "Testing count-occurrences function."
     (is (= (count-occurrences [1 1 2 3 2 1 1]) {1 4, 2 2, 3 1}))
