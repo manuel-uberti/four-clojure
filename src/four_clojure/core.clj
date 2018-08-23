@@ -102,6 +102,20 @@
           []
           xs))
 
+;; # 58
+;; Function Composition
+;; Write a function which allows you to create function compositions. The
+;; parameter list should take a variable number of functions, and create a
+;; function that applies them from right-to-left.
+(defn fn-comp
+  ([] identity)
+  ([f] f)
+  ([f g]
+   (fn [& args]
+     (f (apply g args))))
+  ([f g & fs]
+   (reduce fn-comp (conj fs g f))))
+
 ;; # 77
 ;; Anagram Finder
 ;; Write a function which finds all the anagrams in a vector of words. A word x

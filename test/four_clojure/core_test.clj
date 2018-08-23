@@ -63,6 +63,14 @@
     (is (= (distinct-items '([2 4] [1 2] [1 3] [1 3])) '([2 4] [1 2] [1 3])))
     (is (= (distinct-items (range 50)) (range 50)))))
 
+(deftest fn-comp-test
+  (testing "Testing fn-comp function."
+    (is (= [3 2 1] ((fn-comp rest reverse) [1 2 3 4])))
+    (is (= 5 ((fn-comp (partial + 3) second) [1 2 3 4])))
+    (is (= true ((fn-comp zero? #(mod % 8) +) 3 5 7 9)))
+    (is (= "HELLO"
+           ((fn-comp #(.toUpperCase %) #(apply str %) take) 5 "hello world")))))
+
 (deftest anagram-finder-test
   (testing "Testing anagram-finder function."
     (is (= (anagram-finder ["meat" "mat" "team" "mate" "eat"])
