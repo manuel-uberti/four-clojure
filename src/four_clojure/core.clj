@@ -77,6 +77,21 @@
           #{}
           xs))
 
+;; # 54
+;; Partition a Sequence
+;; Write a function which returns a sequence of lists of x items each. Lists of
+;; less than x items should not be returned.
+(defn partition-sequence
+  [x xs]
+  (loop [xs xs
+         acc []]
+    (if (empty? xs)
+      acc
+      (recur (drop x xs)
+             (if (< (count xs) x)
+               acc
+               (conj acc (take x xs)))))))
+
 ;; # 55
 ;; Count Occurrences
 ;; Write a function which returns a map containing the number of occurences of

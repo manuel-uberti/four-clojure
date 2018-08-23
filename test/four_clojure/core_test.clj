@@ -50,6 +50,12 @@
     (is (= (set (split-by-type [[1 2] :a [3 4] 5 6 :b]))
            #{[[1 2] [3 4]] [:a :b] [5 6]}))))
 
+(deftest partition-sequence-test
+  (testing "Testing partition-sequence function."
+    (is (= (partition-sequence 3 (range 9)) '((0 1 2) (3 4 5) (6 7 8))))
+    (is (= (partition-sequence 2 (range 8)) '((0 1) (2 3) (4 5) (6 7))))
+    (is (= (partition-sequence 3 (range 8)) '((0 1 2) (3 4 5))))))
+
 (deftest count-occurrences-test
   (testing "Testing count-occurrences function."
     (is (= (count-occurrences [1 1 2 3 2 1 1]) {1 4, 2 2, 3 1}))
