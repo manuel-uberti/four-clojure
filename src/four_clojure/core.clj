@@ -135,6 +135,9 @@
 ;; Prime Numbers
 ;; Write a function which returns the first x number of prime numbers.
 (defn prime?
+  "This is an application of https://en.wikipedia.org/wiki/Primality_test#Simple_methods.
+  The only difference is the use of inc. Without it, 4 and 9 will pass as prime
+  numbers."
   [x]
   (or (= x 2)
       (let [divs (range 2 (inc (Math/sqrt x)))]
