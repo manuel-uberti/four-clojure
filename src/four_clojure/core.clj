@@ -131,6 +131,20 @@
   ([f g & fs]
    (reduce fn-comp (conj fs g f))))
 
+;; # 60
+;; Sequence Reductions
+;; Write a function which behaves like reduce, but returns each intermediate
+;; value of the reduction. Your function must accept either two or three
+;; arguments, and the return sequence must be lazy.
+(defn seq-reductions
+  ([f xs]
+   (seq-reductions f (first xs) (rest xs)))
+  ([f x xs]
+   (cons x
+         (lazy-seq
+          (when-not (empty? xs)
+            (seq-reductions f (f x (first xs)) (rest xs)))))))
+
 ;; # 67
 ;; Prime Numbers
 ;; Write a function which returns the first x number of prime numbers.

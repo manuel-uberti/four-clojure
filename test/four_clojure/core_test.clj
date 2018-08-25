@@ -77,6 +77,12 @@
     (is (= "HELLO"
            ((fn-comp #(.toUpperCase %) #(apply str %) take) 5 "hello world")))))
 
+(deftest seq-reductions-test
+  (testing "Testing seq-reductions function."
+    (is (= (take 5 (seq-reductions + (range))) [0 1 3 6 10]))
+    (is (= (seq-reductions conj [1] [2 3 4]) [[1] [1 2] [1 2 3] [1 2 3 4]]))
+    (is (= (last (seq-reductions * 2 [3 4 5])) (reduce * 2 [3 4 5]) 120))))
+
 (deftest primes-test
   (testing "Testing primes function."
     (is (= (primes 2) [2 3]))
