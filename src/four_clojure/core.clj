@@ -131,6 +131,19 @@
   ([f g & fs]
    (reduce fn-comp (conj fs g f))))
 
+;; # 67
+;; Prime Numbers
+;; Write a function which returns the first x number of prime numbers.
+(defn prime?
+  [x]
+  (or (= x 2)
+      (let [divs (range 2 (inc (Math/sqrt x)))]
+        (not-any? #(zero? (mod x %)) divs))))
+
+(defn primes
+  [x]
+  (take x (filter prime? (range 2 (Integer/MAX_VALUE)))))
+
 ;; # 70
 ;; Word Sorting
 ;; Write a function that splits a sentence up into a sorted list of

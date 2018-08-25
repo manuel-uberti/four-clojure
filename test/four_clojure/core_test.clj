@@ -77,6 +77,12 @@
     (is (= "HELLO"
            ((fn-comp #(.toUpperCase %) #(apply str %) take) 5 "hello world")))))
 
+(deftest primes-test
+  (testing "Testing primes function."
+    (is (= (primes 2) [2 3]))
+    (is (= (primes 5) [2 3 5 7 11]))
+    (is (= (last (primes 100)) 541))))
+
 (deftest word-sorting-test
   (testing "Testing word-sorting function."
     (is (= (word-sorting "Have a nice day.")
