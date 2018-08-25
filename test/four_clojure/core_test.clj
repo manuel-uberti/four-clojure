@@ -92,6 +92,11 @@
     (is (= (word-sorting "Fools fall for foolish follies.")
            ["fall" "follies" "foolish" "Fools" "for"]))))
 
+(deftest perfect-squares-test
+  (testing "Testing perfect-squares function."
+    (is (= (perfect-squares "4,5,6,7,8,9") "4,9"))
+    (is (= (perfect-squares "15,16,25,36,37") "16,25,36"))))
+
 (deftest anagram-finder-test
   (testing "Testing anagram-finder function."
     (is (= (anagram-finder ["meat" "mat" "team" "mate" "eat"])

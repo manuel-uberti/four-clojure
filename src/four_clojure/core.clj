@@ -170,6 +170,20 @@
          (sort-by :value #(.compareToIgnoreCase %1 %2))
          (mapcat vals))))
 
+;; # 74
+;; Filter Perfect Squares
+;; Given a string of comma separated integers, write a function which returns a
+;; new comma separated string that only contains the numbers which are perfect
+;; squares.
+(defn perfect-square?
+  [x]
+  (= (count (str (Math/sqrt x))) 3))
+
+(defn perfect-squares
+  [s]
+  (let [xs (map #(Integer/parseInt %) (clojure.string/split s #","))]
+    (apply str (interpose "," (filter perfect-square? xs)))))
+
 ;; # 77
 ;; Anagram Finder
 ;; Write a function which finds all the anagrams in a vector of words. A word x
