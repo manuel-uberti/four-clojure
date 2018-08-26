@@ -161,6 +161,25 @@
   [x]
   (take x (filter prime? (range 2 (Integer/MAX_VALUE)))))
 
+;; # 69
+;; Merge with a Function
+;; Write a function which takes a function f and a variable number of maps. Your
+;; function should return a map that consists of the rest of the maps conj-ed
+;; onto the first. If a key occurs in more than one map, the mapping(s) from the
+;; latter (left-to-right) should be combined with the mapping in the result by
+;; calling (f val-in-result val-in-latter)
+(defn merge-with-f
+  [f & ms]
+  (reduce (fn [acc el]
+            (reduce-kv (fn [m k v]
+                         (if-let [val (get m k nil)]
+                           (assoc m k (f val v))
+                           (assoc m k v)))
+                       acc
+                       el))
+          {}
+          (vec ms)))
+
 ;; # 70
 ;; Word Sorting
 ;; Write a function that splits a sentence up into a sorted list of
