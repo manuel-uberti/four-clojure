@@ -262,3 +262,17 @@
               (into acc (map #(conj % el) acc)))
             #{#{}}
             xs)))
+
+;; # 105
+;; Identify Keys And Values
+;; Given an input sequence of keywords and numbers, create a map such that each
+;; key in the map is a keyword, and the value is a sequence of all the
+;; numbers (if any) between it and the next keyword in the sequence.
+(defn keys-and-vals
+  [xs]
+  (reduce (fn [acc el]
+            (if (keyword? el)
+              (assoc acc el [])
+              (update acc (first (last acc)) conj el)))
+          {}
+          xs))

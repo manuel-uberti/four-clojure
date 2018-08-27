@@ -126,3 +126,10 @@
     (is (= (power-set #{1 2 3})
            #{#{} #{1} #{2} #{3} #{1 2} #{1 3} #{2 3} #{1 2 3}}))
     (is (= (count (power-set (into #{} (range 10)))) 1024))))
+
+(deftest keys-and-vals-test
+  (testing "Testing keys-and-vals function."
+    (is (= {} (keys-and-vals [])))
+    (is (= {:a [1]} (keys-and-vals [:a 1])))
+    (is (= {:a [1], :b [2]} (keys-and-vals [:a 1, :b 2])) )
+    (is (= {:a [1 2 3], :b [], :c [4]} (keys-and-vals [:a 1 2 3 :b :c 4])))))
